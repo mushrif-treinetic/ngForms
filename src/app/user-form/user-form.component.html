@@ -1,0 +1,28 @@
+<h1>Reactive forms with FormArray,FormBuilder and FormGroup</h1>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <label>Name:</label>
+  <input formControlName="name" />
+  <div *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
+    Name is required
+  </div>
+  <br>
+  <label>Email:</label>
+  <input formControlName="email" />
+  <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+    Valid email is required
+  </div>
+
+  <div formArrayName="phones">
+    <label>Phone Numbers:</label>
+    <div *ngFor="let phone of phones.controls; let i = index">
+      <input [formControlName]="i" />
+      <button type="button" (click)="removePhone(i)" *ngIf="phones.length > 1">Remove</button>
+    </div>
+    <button type="button" (click)="addPhone()">Add Phone</button>
+  </div>
+
+  <br />
+  <button type="submit">Submit</button>
+</form>
