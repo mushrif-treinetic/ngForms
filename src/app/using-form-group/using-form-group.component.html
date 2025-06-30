@@ -1,29 +1,57 @@
 <h2>Reactive-Form using Form-Group</h2>
 
 <div class="container">
-    <form [formGroup]="userform" (ngSubmit)="onSaveUser()">
-        <div class="row">
-            <div>
-                <label for="name">Name</label><br>
-                <input type="text" class="form-control" formControlName="name">
-            </div>
+    <div class="row">
+        <div>
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Name</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of usersArray">
+                        <td>{{user.id}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-success" (click)="onEdit(user.id)" >Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="row">
-            <div>
-                <label for="username">Username</label><br>
-                <input type="text" class="form-control" formControlName="username">
-            </div>
+        <div class="col-6">
+            <form [formGroup]="userform" (ngSubmit)="onSaveUser()">
+                <div class="row">
+                    <div>
+                        <label for="name">Name</label><br>
+                        <input type="text" class="form-control" formControlName="name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="username">Username</label><br>
+                        <input type="text" class="form-control" formControlName="username">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="email">Email</label><br>
+                        <input type="text" class="form-control" formControlName="email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col6">
+                        <button class="btn btn-success" type="submit">Save User</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="row">
-            <div>
-                <label for="email">Email</label><br>
-                <input type="text" class="form-control" formControlName="email">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col6">
-                <button class="btn btn-success" type="submit">Save User</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
